@@ -1,0 +1,11 @@
+body {
+    display:flex
+}
+
+main {
+    background-color: aliceblue;
+}
+
+#for-text-colors {
+   color: slateblue
+}
