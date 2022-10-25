@@ -1,4 +1,26 @@
-img {
-    width: 200px;
-    height: 200px;
+body {
+    display:flex
+}
+
+main {
+    background-color: rgb(248, 227, 200);
+}
+
+#for-text-colors {
+   color: rgb(88, 64, 31)
+}
+
+#name-list {
+    display: grid
+    flex-wrap: wrap;
+    grid-template-columns: 30vw 35vw 30vw;
+    grid-template-rows: 30vh 35vh 30vh;
+    align-content: center;
+    column-count: 3;
+    column-gap: 40px;
+    overflow-wrap: break-word;
+}
+
+h3 {
+    break-after: column;
 }
