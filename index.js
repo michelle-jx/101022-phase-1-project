@@ -175,7 +175,7 @@ const displayRDrink = (drink) => {
     rDrinkImg.src = drink.strDrinkThumb
 
     randomizerDiv.append(rDrinkName, rDrinkImg)
-git 
+    
     rButton.addEventListener('click', getRandomDrink)
 
     // rDrinkImg.style.visibility = 'hidden'
