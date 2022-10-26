@@ -15,17 +15,6 @@ main {
 
 #for-text-colors {
     color: rgb(88, 64, 31)
-    overflow-x: scroll;
-}
-
-#name-list {
-    flex-wrap: wrap;
-    grid-template-columns: 30vw 35vw 30vw;
-    grid-template-rows: 30vh 35vh 30vh;
-    align-content: center;
-    column-count: 3;
-    column-gap: 40px;
-    overflow-wrap: break-word;
 }
 
 h3 {
@@ -50,9 +39,13 @@ h3 {
 
 /* Add rounded corners to the top left and the top right corner of the image */
 img {
-    border-radius: 5px 5px 0 0;
+    border-radius: 5px 5px 5px 5px;
     display: block;
+    position: relative;
+    bottom: auto;
+    /* max-width: 100%; */
 } 
+
 
 #random-drink-image {
     justify-content: center;

@@ -265,6 +265,7 @@ const displayRDrink = (drink) => {
     randomizerDiv.innerHTML = ''
 
     rDrinkName.textContent = drink.strDrink
+    rDrinkName.id = 'drink-name'
     rDrinkImg.src = drink.strDrinkThumb
     randomizerDiv.append(rDrinkName, rDrinkImg)
     rButton.addEventListener('click', getRandomDrink)
@@ -275,9 +276,9 @@ const displayRDrink = (drink) => {
 const init = () => {
 
     getRandomDrink()
+    setTimeout(() => {alert('Please confirm you are over 21 years of age.')
+    
+}, 1000);
 }
 
 init()
-setTimeout(() => {alert('Please confirm you are over 21 years of age.')
-    
-}, 1000);
