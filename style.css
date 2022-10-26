@@ -19,7 +19,6 @@ main {
 }
 
 #name-list {
-    display: grid
     flex-wrap: wrap;
     grid-template-columns: 30vw 35vw 30vw;
     grid-template-rows: 30vh 35vh 30vh;
@@ -37,15 +36,25 @@ h3 {
     display: flex;
     overflow-x: auto;
     margin: 1rem 0;
-    max-width: calc(100vw - 2rem);
-    max-height: 600px;
+    max-width: calc(50vw - 2rem);
+    max-height: 50vh;
     font-size: 24px;
 }
+
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    border-radius: 5px; /* 5px rounded corners */
+  }
+  
+  /* Add rounded corners to the top left and the top right corner of the image */
+  img {
+    border-radius: 5px 5px 0 0;
+  }
 
 #random-drink-image {
     display: block;
     justify-content: center;
     margin: auto;
-
 }
 
