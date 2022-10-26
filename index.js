@@ -250,6 +250,8 @@ const getRandomDrink = () => {
 
 }
 
+randomizerDiv.style.display = "none"
+
 const renderDrink = (drink) => {
 
     drink.drinks.forEach(displayRDrink)
@@ -268,8 +270,28 @@ const displayRDrink = (drink) => {
     rDrinkName.id = 'drink-name'
     rDrinkImg.src = drink.strDrinkThumb
     randomizerDiv.append(rDrinkName, rDrinkImg)
-    rButton.addEventListener('click', getRandomDrink)
-};
+
+    // rButton.addEventListener('click', () => {
+
+    //  if (randomizerDiv.style.display === "none") {
+    //     randomizerDiv.style.display = "block";
+    //   } else {
+    //     randomizerDiv.style.display = "none";
+    
+    // } getRandomDrink()
+    
+    //    } )
+}
+    rButton.addEventListener('click', () => {
+
+     if (randomizerDiv.style.display === "none") {
+        randomizerDiv.style.display = "block";
+      } else {
+        randomizerDiv.style.display = "none";
+    
+    } getRandomDrink()
+    
+       } )
 
 // rDrinkImg.style.visibility = 'block'
 // console.log(drink.strDrink)
@@ -279,6 +301,10 @@ const init = () => {
     setTimeout(() => {alert('Please confirm you are over 21 years of age.')
     
 }, 1000);
+
 }
 
 init()
+setTimeout(() => {alert('Please confirm you are over 21 years of age.')
+    
+}, 1000);
