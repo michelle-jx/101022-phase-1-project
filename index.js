@@ -153,7 +153,7 @@ const displayDrinks = (drinkData) => {
     const drinkGlass = document.createElement('h4')
     const drinkImg = document.createElement('img')
 
-
+    drinkUl.append(drinkName)
     for (let i = 1; i < 16; i++) {
         console.log(i)
         if (drinkData[`strIngredient${i}`] == null) {
@@ -173,7 +173,7 @@ const displayDrinks = (drinkData) => {
     drinkCategory.textContent = `This is a ${drinkData.strCategory}`
     drinkName.textContent = `Name: ${drinkData.strDrink}`
 
-    drinkUl.append(drinkName, drinkInst, drinkGlass, drinkImg, drinkCategory)
+    drinkUl.append(drinkInst, drinkGlass, drinkImg, drinkCategory)
 
     // const ingredient1 = document.createElement('ul')
     // const ingredient2 = document.createElement('ul')
@@ -268,7 +268,6 @@ const displayRDrink = (drink) => {
     rDrinkImg.src = drink.strDrinkThumb
     randomizerDiv.append(rDrinkName, rDrinkImg)
     rButton.addEventListener('click', getRandomDrink)
-
 };
 
 // rDrinkImg.style.visibility = 'block'
@@ -276,7 +275,9 @@ const displayRDrink = (drink) => {
 const init = () => {
 
     getRandomDrink()
-
 }
 
 init()
+setTimeout(() => {alert('Please confirm you are over 21 years of age.')
+    
+}, 1000);

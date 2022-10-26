@@ -3,11 +3,10 @@ header {
     padding: 30px;
     background-color: rgb(255, 249, 242);
     color: rgb(88, 64, 31)
-    
 }
 
 body {
-    display:flex;
+    display: flex;
 }
 
 main {
@@ -15,7 +14,8 @@ main {
 }
 
 #for-text-colors {
-   color: rgb(88, 64, 31)
+    color: rgb(88, 64, 31)
+    overflow-x: scroll;
 }
 
 #name-list {
@@ -42,19 +42,19 @@ h3 {
 }
 
 .card {
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     transition: 0.3s;
-    border-radius: 5px; /* 5px rounded corners */
-  }
-  
-  /* Add rounded corners to the top left and the top right corner of the image */
-  img {
+    border-radius: 5px;
+    /* 5px rounded corners */
+}
+
+/* Add rounded corners to the top left and the top right corner of the image */
+img {
     border-radius: 5px 5px 0 0;
-  }
+    display: block;
+} 
 
 #random-drink-image {
-    display: block;
     justify-content: center;
     margin: auto;
 }
-
