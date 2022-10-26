@@ -6,18 +6,6 @@ let possibleCocktails3 = [];
 let possibleCocktails4 = [];
 let possibleCocktails5 = [];
 
-fetch('https://www.thecocktaildb.com/api/json/v1/1/search.php?f=a')
-    .then(res => res.json())
-    .then(drinkData => {
-        // console.log(drinkData.drinks[0].strDrinks)
-        renderDrinks(drinkData)
-    })
-
-const renderDrinks = (drinkData) => {
-    drinkData.drinks.forEach(displayDrinks)
-    console.log(drinkData)
-}
-
 getEnteredIngredients();
 
 function getEnteredIngredients() {
@@ -142,6 +130,20 @@ function getCocktailIngredients(singleDrinkData, ingrSearchArray) {
 
 //Dislay drink Informattion
 
+
+fetch('https://www.thecocktaildb.com/api/json/v1/1/search.php?f=a')
+    .then(res => res.json())
+    .then(drinkData => {
+        // console.log(drinkData.drinks[0].strDrinks)
+        renderDrinks(drinkData)
+    })
+
+const renderDrinks = (drinkData) => {
+    drinkData.drinks.forEach(displayDrinks)
+    console.log(drinkData)
+}
+
+
 const drinkUl = document.getElementById('name-list')
 
 const displayDrinks = (drinkData) => {
@@ -238,6 +240,7 @@ const API_URL = "https://www.thecocktaildb.com/api/json/v1/1/random.php"
 const randomizerDiv = document.getElementById('random-drink');
 const rButton = document.getElementById('random-btn');
 
+
 const getRandomDrink = () => {
     fetch(API_URL)
         .then(res => res.json())
@@ -259,16 +262,35 @@ const renderDrink = (drink) => {
 
 const displayRDrink = (drink) => {
 
+    
+
     const rDrinkName = document.createElement('name')
     const rDrinkImg = document.createElement('img')
 
-    // rDrinkImg.style.visibility = 'hidden'
+    for (let i = 1; i < 16; i++) {
+
+
+        if (drink[`strIngredient${i}`] == null) {
+            break
+        }
+
+        const rIngredient = document.createElement('h1')
+
+        // rIngredient.textContent = drink[`strMeasure${i}`] + drink[`strIngredient${i}`]
+        rIngredient.textContent = "Hi"
+
+        randomizerDiv.append(rIngredient)
+
+        console.log(drink[`strMeasure${i}`])
+
+    }
 
     randomizerDiv.innerHTML = ''
 
     rDrinkName.textContent = drink.strDrink
     rDrinkName.id = 'drink-name'
     rDrinkImg.src = drink.strDrinkThumb
+    rDrinkImg.alt = drink.strDrink
     randomizerDiv.append(rDrinkName, rDrinkImg)
 
     // rButton.addEventListener('click', () => {
@@ -305,6 +327,3 @@ const init = () => {
 }
 
 init()
-setTimeout(() => {alert('Please confirm you are over 21 years of age.')
-    
-}, 1000);
