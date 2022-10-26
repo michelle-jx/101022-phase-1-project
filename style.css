@@ -1,5 +1,13 @@
+header {
+    display: flex;
+    padding: 30px;
+    background-color: rgb(255, 249, 242);
+    color: rgb(88, 64, 31)
+    
+}
+
 body {
-    display:flex
+    display:flex;
 }
 
 main {
@@ -24,3 +32,20 @@ main {
 h3 {
     break-after: column;
 }
+
+#random-drink {
+    display: flex;
+    overflow-x: auto;
+    margin: 1rem 0;
+    max-width: calc(100vw - 2rem);
+    max-height: 600px;
+    font-size: 24px;
+}
+
+#random-drink-image {
+    display: block;
+    justify-content: center;
+    margin: auto;
+
+}
+
