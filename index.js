@@ -111,7 +111,7 @@ for (i=0; i<uniqueOneIngredientDrinks.length; i++){
 
 //Dislay drink Information
 
-fetch('https://www.thecocktaildb.com/api/json/v1/1/search.php?f=t')
+fetch('https://www.thecocktaildb.com/api/json/v1/1/search.php?f=b')
     .then(res => res.json())
     .then(drinkData => {
         // console.log(drinkData.drinks[0].strDrinks)
@@ -133,6 +133,33 @@ const displayDrinks = (drinkData) => {
     const drinkCategory = document.createElement('h3')
     const drinkGlass = document.createElement('h4')
     const drinkImg = document.createElement('img')
+    const likeBtn = document.createElement('i')
+    const disLikeBtn = document.createElement('i')
+
+    likeBtn.className = "fa-solid fa-thumbs-up"
+    likeBtn.id = "like"
+    disLikeBtn.className = "fa-solid fa-thumbs-down"
+    disLikeBtn.id = "dislike"
+    likeBtn.style.color = "grey";
+    disLikeBtn.style.color = "grey";
+
+    const like = () => {
+        likeBtn.style.color = "blue";
+        disLikeBtn.style.color = "grey"
+    
+    }
+
+    const dislike = () => {
+    
+        disLikeBtn.style.color = "blue";
+        likeBtn.style.color = "grey";
+       
+
+    }
+
+    likeBtn.addEventListener("click", like)
+
+    disLikeBtn.addEventListener("click", dislike)
 
 
     drinkUl.append(drinkName)
@@ -158,7 +185,7 @@ const displayDrinks = (drinkData) => {
     drinkCategory.textContent = `This is a ${drinkData.strCategory}`
     drinkName.textContent = `Name: ${drinkData.strDrink}`
 
-    drinkUl.append(drinkInst, drinkGlass, drinkImg, drinkCategory)
+    drinkUl.append(drinkInst, drinkGlass, drinkImg, drinkCategory, likeBtn, disLikeBtn)
 
     // const ingredient1 = document.createElement('ul')
     // const ingredient2 = document.createElement('ul')
@@ -244,8 +271,34 @@ const displayRDrink = (drink) => {
 
     const rDrinkName = document.createElement('name')
     const rDrinkImg = document.createElement('img')
-
     const rDrinkInst = document.createElement('p')
+    const likeBtn = document.createElement('i')
+    const disLikeBtn = document.createElement('i')
+
+    likeBtn.className = "fa-solid fa-thumbs-up"
+    likeBtn.id = "like"
+    disLikeBtn.className = "fa-solid fa-thumbs-down"
+    disLikeBtn.id = "dislike"
+    likeBtn.style.color = "grey";
+    disLikeBtn.style.color = "grey";
+
+    const like = () => {
+        likeBtn.style.color = "blue";
+        disLikeBtn.style.color = "grey"
+    
+    }
+
+    const dislike = () => {
+    
+        disLikeBtn.style.color = "blue";
+        likeBtn.style.color = "grey";
+       
+
+    }
+
+    likeBtn.addEventListener("click", like)
+
+    disLikeBtn.addEventListener("click", dislike)
 
     randomizerDiv.innerHTML = ''
 
@@ -254,7 +307,7 @@ const displayRDrink = (drink) => {
     rDrinkName.id = 'drink-name'
     rDrinkImg.src = drink.strDrinkThumb
     rDrinkImg.alt = drink.strDrink
-    randomizerDiv.append(rDrinkName, rDrinkImg, rDrinkInst)
+    randomizerDiv.append(rDrinkName, rDrinkImg, rDrinkInst, likeBtn, disLikeBtn)
 
     for (let i = 1; i < 16; i++) {
 
@@ -288,21 +341,20 @@ rButton.addEventListener('click', () => {
 // console.log(drink.strDrink)
 
 
-const like = document.getElementById('like');
-const dislike = document.getElementById('dislike')
 
-const likeBtn = () => {
 
-    like.style.color = "blue";
-    dislike.style.color = "grey";
+// const likeBtn = () => {
 
-}
+//     like.style.color = "blue";
+//     dislike.style.color = "grey";
 
-const dislikeBtn = () => {
+// }
+
+// const dislikeBtn = () => {
  
-    dislike.style.color = "blue";
-    like.style.color = "grey";
-}
+//     dislike.style.color = "blue";
+//     like.style.color = "grey";
+// }
 
 const init = (drink) => {
 
