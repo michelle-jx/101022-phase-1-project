@@ -1,15 +1,17 @@
-//Creating the Form and search. 
+//Creating the Form and search.
 
-let possibleCocktails1 = [];
-let possibleCocktails2 = [];
-let possibleCocktails3 = [];
-let possibleCocktails4 = [];
-let possibleCocktails5 = [];
-
+let hasOneIngredient = [];
+let uniqueOneIngredientDrinks = [];
+// let hasTwoIngredients = [];
+// let hasThreeIngredients = [];
+// let hasFourIngredients = [];
+// let hasFiveIngredients = [];
+const foundDrinksList = document.getElementById('you-have-ingredients-list')
+const listHeader = document.createElement('ul')
+listHeader.textContent = "Drinks with More than One Ingredient"
+foundDrinksList.append(listHeader)
 getEnteredIngredients();
-
 function getEnteredIngredients() {
-
     const somethingToGrab = document.getElementById('create-ingredients-list');
     const ingredientsForm = document.createElement('form');
     const getFirstIngredient = document.createElement('input');
@@ -18,120 +20,98 @@ function getEnteredIngredients() {
     const getFourthIngredient = document.createElement('input');
     const getFifthIngredient = document.createElement('input');
     const submitButton = document.createElement('button');
-
     getFirstIngredient.placeholder = 'Ingredient';
     getSecondIngredient.placeholder = 'Ingredient';
     getThirdIngredient.placeholder = 'Ingredient';
     getFourthIngredient.placeholder = 'Ingredient';
     getFifthIngredient.placeholder = 'Ingredient';
     submitButton.textContent = 'Submit Ingredients';
-
     somethingToGrab.append(ingredientsForm)
     ingredientsForm.append(getFirstIngredient, getSecondIngredient, getThirdIngredient, getFourthIngredient, getFifthIngredient, submitButton);
-
     let enteredCocktailIngredients = []
-
     ingredientsForm.addEventListener('submit', (e) => {
+        hasOneIngredient = []
+        uniqueOneIngredientDrinks = []
         e.preventDefault()
-        // const ingrOneSearch = e.target[0].value
-        // const ingrTwoSearch = e.target[1].value
-        // const ingrThreeSearch = e.target[2].value
-        // const ingrFourSearch = e.target[3].value
-        // const ingrFiveSearch = e.target[4].value
-
+//after this submit we need to clear out the counting variables. Otherwise it
+//will double count things is you submit new ingredients.
         for (i = 0; i < 5; i++) {
             enteredCocktailIngredients.push(e.target[i].value)
         }
         console.log(enteredCocktailIngredients)
         searchIngredients(enteredCocktailIngredients)
-
-        // console.log(cocktailIngredients)
-        // console.log(ingrOneSearch)
-        // console.log(ingrTwoSearch)
-        // console.log(ingrThreeSearch)
-        // console.log(ingrFourSearch)
-        // console.log(ingrFiveSearch)
-        // searchIngredients(ingrOneSearch)
-        // searchIngredients(ingrTwoSearch)
-        // searchIngredients(ingrThreeSearch)
-        // searchIngredients(ingrFourSearch)
-        // searchIngredients(ingrFiveSearch)
-
     })
-
 }
-
 function searchIngredients(ingrSearchArray) {
     console.log("Search Ingredients is running");
-    fetch('https://www.thecocktaildb.com/api/json/v1/1/search.php?f=a')
+    fetch('https://www.thecocktaildb.com/api/json/v1/1/search.php?f=t')
         .then(res => res.json())
         .then(drinkData => {
             //console.log(drinkData)
             drinkData.drinks.forEach((singleDrinkData) => {
                 getCocktailIngredients(singleDrinkData, ingrSearchArray)
-                // I tried drinkData.drinks to be passed above and it changed what was
-                // console.logged slightly, but I still couldn't access data I needed
-                // Phil clarified. I needed to pass just the one drink. Not the entire array.
-                //console.log(possibleCocktails)
             })
+            getUniqueOneIngredientDrinks(hasOneIngredient)
         })
-    // for (i=0; i<5; i++) {
-    //     console.log('Did I run?')
-    //  if (ingredient1 === ingrOneSearch){
-    //     possibleCocktails.push(drinkData.strDrink)
-    //     console.log(possibleCocktails)
-    //  }
-    //  else  {console.log('Hi')
-    //  }
-    //do I set it to a boolean?
 }
 function getCocktailIngredients(singleDrinkData, ingrSearchArray) {
-
-    //console.log("getCocktailIngredients ran")
-    //console.log(ingrSearchArray)
-    //console.log(singleDrinkData)
-    //console.log(typeof(singleDrinkData))
-    //console.log(singleDrinkData.strDrink)
-    // let singleCocktailIngredients = []
-    // for (i=1; i<6; i++){
-    //     console.log(singleDrinkData.strIngredient[i])
-    //     //singleCocktailIngredients.push(singleDrinkData.strIngredient[i])
-    // }
-
+// If we had time it might be better to create an object that had the name of the
+// drink and the number of ingredients that it has. Then we could use that info to
+// determine if we had all of the ingredients.
+// Also, it would be good to have the matches all be switched to toUpperCase or something
+// because the API is not consistent with how it enters the data.
     for (i = 0; i < 5; i++) {
-
         //console.log(ingrSearchArray[i])
         //console.log(singleDrinkData[`strIngredient${i+1}`])
         for (j = 1; j < 6; j++) {
-            if (ingrSearchArray[i] === singleDrinkData[`strIngredient${j}`] && i === 0) {
-                possibleCocktails1.push(singleDrinkData.strDrink)
+            if (ingrSearchArray[i] === singleDrinkData[`strIngredient${j}`]) {
+                hasOneIngredient.push(singleDrinkData.strDrink)
             }
-            else if (ingrSearchArray[i] === singleDrinkData[`strIngredient${j}`] && i === 1) {
-                possibleCocktails2.push(singleDrinkData.strDrink)
+            else if (ingrSearchArray[i] === singleDrinkData[`strIngredient${j}`]) {
+                hasOneIngredient.push(singleDrinkData.strDrink)
             }
-            else if (ingrSearchArray[i] === singleDrinkData[`strIngredient${j}`] && i === 2) {
-                possibleCocktails3.push(singleDrinkData.strDrink)
+            else if (ingrSearchArray[i] === singleDrinkData[`strIngredient${j}`]) {
+                hasOneIngredient.push(singleDrinkData.strDrink)
             }
-            else if (ingrSearchArray[i] === singleDrinkData[`strIngredient${j}`] && i === 3) {
-                possibleCocktails4.push(singleDrinkData.strDrink)
+            else if (ingrSearchArray[i] === singleDrinkData[`strIngredient${j}`]) {
+                hasOneIngredient.push(singleDrinkData.strDrink)
             }
-            else if (ingrSearchArray[i] === singleDrinkData[`strIngredient${j}`] && i === 4) {
-                possibleCocktails5.push(singleDrinkData.strDrink)
+            else if (ingrSearchArray[i] === singleDrinkData[`strIngredient${j}`]) {
+                hasOneIngredient.push(singleDrinkData.strDrink)
             }
         }
     }
-    console.log(possibleCocktails1)
-    console.log(possibleCocktails2)
-    console.log(possibleCocktails3)
-    console.log(possibleCocktails4)
-    console.log(possibleCocktails5)
-
+    console.log('getCocktailIngredients ran')
+    console.log(hasOneIngredient)
+}
+function getUniqueOneIngredientDrinks(hasOneIngredient){
+    let uniqueOneIngredientDrinks = [...new Set(hasOneIngredient)]
+    console.log(uniqueOneIngredientDrinks)
+    howManyIngredientsPerDrink(hasOneIngredient, uniqueOneIngredientDrinks)
+}
+function howManyIngredientsPerDrink(hasOneIngredient, uniqueOneIngredientDrinks) {
+for (i=0; i<uniqueOneIngredientDrinks.length; i++){
+    //can I make this an object where the key is the name and the value is the # of ingredients that match?
+    let ingredientCount = 0
+    hasOneIngredient.forEach(drink => {
+        if (drink === uniqueOneIngredientDrinks[i]) {
+            ingredientCount += 1;
+        }
+        })
+        // Maybe add a switch here that puts the different results into the
+        // hasXingredients arrays so can more easily access that info?
+        if (ingredientCount > 1) {
+            const drinkToMake = document.createElement('li')
+            drinkToMake.textContent = uniqueOneIngredientDrinks[i] + ' has '+ ingredientCount +' ingredients'
+            listHeader.append(drinkToMake)
+        }
+        console.log(uniqueOneIngredientDrinks[i] + ' has '+ ingredientCount +' ingredients')
+    }
 }
 
-//Dislay drink Informattion
+//Dislay drink Information
 
-
-fetch('https://www.thecocktaildb.com/api/json/v1/1/search.php?f=a')
+fetch('https://www.thecocktaildb.com/api/json/v1/1/search.php?f=t')
     .then(res => res.json())
     .then(drinkData => {
         // console.log(drinkData.drinks[0].strDrinks)
@@ -142,7 +122,6 @@ const renderDrinks = (drinkData) => {
     drinkData.drinks.forEach(displayDrinks)
     console.log(drinkData)
 }
-
 
 const drinkUl = document.getElementById('name-list')
 
@@ -155,6 +134,7 @@ const displayDrinks = (drinkData) => {
     const drinkGlass = document.createElement('h4')
     const drinkImg = document.createElement('img')
 
+
     drinkUl.append(drinkName)
     for (let i = 1; i < 16; i++) {
         console.log(i)
@@ -163,13 +143,14 @@ const displayDrinks = (drinkData) => {
             break
         }
 
-   
+
         const ingredient = document.createElement('ul')
 
-        ingredient.innerHTML = drinkData[`strMeasure${i}`] + drinkData[`strIngredient${i}`]
+        ingredient.innerHTML = drinkData[`strIngredient${i}`] +  drinkData[`strMeasure${i}`]
         drinkUl.appendChild(ingredient)
     }
 
+    
     drinkGlass.textContent = `Glass type: ${drinkData.strGlass}`
     drinkImg.src = drinkData.strDrinkThumb
     drinkImg.alt = drinkData.strDrink
@@ -232,16 +213,12 @@ const displayDrinks = (drinkData) => {
 
 }
 
-
-
 // DRINK RANDOMIZER
-
 
 const API_URL = "https://www.thecocktaildb.com/api/json/v1/1/random.php"
 
 const randomizerDiv = document.getElementById('random-drink');
 const rButton = document.getElementById('random-btn');
-
 
 const getRandomDrink = () => {
     fetch(API_URL)
@@ -260,10 +237,8 @@ randomizerDiv.style.display = "none"
 const renderDrink = (drink) => {
 
     drink.drinks.forEach(displayRDrink)
+
 }
-
-
-
 
 const displayRDrink = (drink) => {
 
@@ -273,7 +248,6 @@ const displayRDrink = (drink) => {
     const rDrinkInst = document.createElement('p')
 
     randomizerDiv.innerHTML = ''
-    // rIngredient.textContent = "Hi"
 
     rDrinkInst.textContent = drink.strInstructions
     rDrinkName.textContent = drink.strDrink
@@ -284,19 +258,22 @@ const displayRDrink = (drink) => {
 
     for (let i = 1; i < 16; i++) {
 
-        if (drink[`strMeasure${i}`] == null) {
+        if (drink[`strMeasure${i}`] == null ) {
+            break
+        }else if (drink[`strIngredient${i}`]== null ) {
             break
         }
-        // const rIngredient = document.createElement('h1')
+
         const rIngredient = document.createElement('p')
 
-        rIngredient.textContent = drink[`strMeasure${i}`] +  drink[`strIngredient${i}`]
+        rIngredient.textContent = drink[`strIngredient${i}`] +  drink[`strMeasure${i}`]  
         randomizerDiv.appendChild(rIngredient)
-        // rIngredient.textContent = "Hi"
-        console.log(drink)
+
+        // console.log(drink)
     }
 
 }
+
 rButton.addEventListener('click', () => {
 
     if (randomizerDiv.style.display === "none") {
@@ -308,11 +285,29 @@ rButton.addEventListener('click', () => {
 
 })
 
-// rDrinkImg.style.visibility = 'block'
 // console.log(drink.strDrink)
-const init = () => {
+
+
+const like = document.getElementById('like');
+const dislike = document.getElementById('dislike')
+
+const likeBtn = () => {
+
+    like.style.color = "blue";
+    dislike.style.color = "grey";
+
+}
+
+const dislikeBtn = () => {
+ 
+    dislike.style.color = "blue";
+    like.style.color = "grey";
+}
+
+const init = (drink) => {
 
     getRandomDrink()
+
     //     setTimeout(() => {alert('Please confirm you are over 21 years of age.')
 
     // }, 1000);
