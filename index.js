@@ -158,10 +158,12 @@ const displayDrinks = (drinkData) => {
     drinkUl.append(drinkName)
     for (let i = 1; i < 16; i++) {
         console.log(i)
+
         if (drinkData[`strIngredient${i}`] == null) {
             break
         }
 
+   
         const ingredient = document.createElement('ul')
 
         ingredient.innerHTML = drinkData[`strMeasure${i}`] + drinkData[`strIngredient${i}`]
@@ -197,7 +199,7 @@ const displayDrinks = (drinkData) => {
     //     drinkUl.textContent = ''
     // }
 
-     // if ( typeof(drinkData) === "null") {
+    // if ( typeof(drinkData) === "null") {
     //     drinkUl.innerHTML = ''
     // }
     // ingredient1.textContent = drinkData.strIngredient1
@@ -225,8 +227,8 @@ const displayDrinks = (drinkData) => {
     // ingredient7.textContent = `${drinkData.strMeasure7}``${drinkData.strIngredient7}`
     // ingredient8.textContent = `${drinkData.strMeasure8}``${drinkData.strIngredient8}`
 
-     //     ingredient1, ingredient2, ingredient3, ingredient4, ingredient5,  ingredient6,  ingredient7,  ingredient8,
-        //     measure1, measure2, measure3, measure4, measure5, measure6, measure7, measure8,
+    //     ingredient1, ingredient2, ingredient3, ingredient4, ingredient5,  ingredient6,  ingredient7,  ingredient8,
+    //     measure1, measure2, measure3, measure4, measure5, measure6, measure7, measure8,
 
 }
 
@@ -260,69 +262,60 @@ const renderDrink = (drink) => {
     drink.drinks.forEach(displayRDrink)
 }
 
-const displayRDrink = (drink) => {
 
-    
+
+
+const displayRDrink = (drink) => {
 
     const rDrinkName = document.createElement('name')
     const rDrinkImg = document.createElement('img')
 
-    for (let i = 1; i < 16; i++) {
-
-
-        if (drink[`strIngredient${i}`] == null) {
-            break
-        }
-
-        const rIngredient = document.createElement('h1')
-
-        // rIngredient.textContent = drink[`strMeasure${i}`] + drink[`strIngredient${i}`]
-        rIngredient.textContent = "Hi"
-
-        randomizerDiv.append(rIngredient)
-
-        console.log(drink[`strMeasure${i}`])
-
-    }
+    const rDrinkInst = document.createElement('p')
 
     randomizerDiv.innerHTML = ''
+    // rIngredient.textContent = "Hi"
 
+    rDrinkInst.textContent = drink.strInstructions
     rDrinkName.textContent = drink.strDrink
     rDrinkName.id = 'drink-name'
     rDrinkImg.src = drink.strDrinkThumb
     rDrinkImg.alt = drink.strDrink
-    randomizerDiv.append(rDrinkName, rDrinkImg)
+    randomizerDiv.append(rDrinkName, rDrinkImg, rDrinkInst)
 
-    // rButton.addEventListener('click', () => {
+    for (let i = 1; i < 16; i++) {
 
-    //  if (randomizerDiv.style.display === "none") {
-    //     randomizerDiv.style.display = "block";
-    //   } else {
-    //     randomizerDiv.style.display = "none";
-    
-    // } getRandomDrink()
-    
-    //    } )
+        if (drink[`strMeasure${i}`] == null) {
+            break
+        }
+        // const rIngredient = document.createElement('h1')
+        const rIngredient = document.createElement('p')
+
+        rIngredient.textContent = drink[`strMeasure${i}`] +  drink[`strIngredient${i}`]
+        randomizerDiv.appendChild(rIngredient)
+        // rIngredient.textContent = "Hi"
+        console.log(drink)
+    }
+
 }
-    rButton.addEventListener('click', () => {
+rButton.addEventListener('click', () => {
 
-     if (randomizerDiv.style.display === "none") {
+    if (randomizerDiv.style.display === "none") {
         randomizerDiv.style.display = "block";
-      } else {
+    } else {
         randomizerDiv.style.display = "none";
-    
+
     } getRandomDrink()
-    
-       } )
+
+})
 
 // rDrinkImg.style.visibility = 'block'
 // console.log(drink.strDrink)
 const init = () => {
 
     getRandomDrink()
-    setTimeout(() => {alert('Please confirm you are over 21 years of age.')
-    
-}, 1000);
+    //     setTimeout(() => {alert('Please confirm you are over 21 years of age.')
+
+    // }, 1000);
 
 }
 
