@@ -64,3 +64,20 @@ img {
     max-width: 35vw;
     max-height: 35vh;
 }
+
+#like{
+    margin: 32px;
+    font-size: 39px;
+
+}
+
+
+#dislike {
+    margin: 32px;
+    font-size: 39px;
+}
+
+#you-have-ingredients-list {
+    text-align: center;
+}
+
