@@ -49,7 +49,6 @@ function getEnteredIngredients() {
             enteredCocktailIngredients.push(e.target[i].value)
         }
 
-
         searchIngredients(enteredCocktailIngredients)
 
     })
@@ -85,7 +84,12 @@ function getCocktailIngredients(singleDrinkData, ingrSearchArray) {
 function getUniqueOneIngredientDrinks(hasOneIngredient) {
 
     let uniqueOneIngredientDrinks = [...new Set(hasOneIngredient)]
-
+    
+    if (hasOneIngredient.length === 0 || uniqueOneIngredientDrinks.length === hasOneIngredient.length) {
+        const notEnoughIngredients = document.createElement('li')
+        notEnoughIngredients.textContent = `You don't have enough ingredients for any of these drinks. Try Again.`
+        listHeader.append(notEnoughIngredients)
+    }
    
     howManyIngredientsPerDrink(hasOneIngredient, uniqueOneIngredientDrinks)
 }
