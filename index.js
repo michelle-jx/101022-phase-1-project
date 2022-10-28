@@ -283,12 +283,9 @@ const displayRDrink = (drink) => {
 
     for (let i = 1; i < 16; i++) {
 
-        if (drinkData[`strMeasure${i}`] == null || drinkData[`strIngredient${i}`] == null) {
+        if (drink[`strMeasure${i}`] == null || drink[`strIngredient${i}`] == null  ) {
             break
         }
-        // } else if (drink[`strIngredient${i}`] == null) {
-        //     break
-        // }
 
         const rIngredient = document.createElement('p')
 
