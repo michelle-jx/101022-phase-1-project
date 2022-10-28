@@ -8,10 +8,13 @@ header {
 
 body {
     display: flex;
+    margin: 0;
+
 }
 
 main {
     background-color: rgb(248, 227, 200);
+    border: 0ch;
 }
 
 #for-text-colors {

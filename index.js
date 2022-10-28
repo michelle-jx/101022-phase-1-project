@@ -82,6 +82,7 @@ function getCocktailIngredients(singleDrinkData, ingrSearchArray) {
     }
 
 }
+
 function getUniqueOneIngredientDrinks(hasOneIngredient) {
 
     let uniqueOneIngredientDrinks = [...new Set(hasOneIngredient)]
@@ -308,9 +309,9 @@ const init = (drink) => {
     getRandomDrink()
     getEnteredIngredients();
 
-        setTimeout(() => {alert('Please confirm you are 21 years of age or over.')
+    //     setTimeout(() => {alert('Please confirm you are 21 years of age or over.')
 
-    }, 1000);
+    // }, 1000);
 
 }
 
