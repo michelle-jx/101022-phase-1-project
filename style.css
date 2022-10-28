@@ -68,6 +68,7 @@ img {
 #like{
     margin: 32px;
     font-size: 39px;
+    cursor: pointer;
 
 }
 
@@ -75,9 +76,14 @@ img {
 #dislike {
     margin: 32px;
     font-size: 39px;
+    cursor: pointer;
 }
 
 #you-have-ingredients-list {
     text-align: center;
+}
+
+#random-btn{
+    cursor: pointer;
 }
 

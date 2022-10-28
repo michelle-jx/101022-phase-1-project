@@ -26,6 +26,7 @@ function getEnteredIngredients() {
     getFourthIngredient.placeholder = 'Ingredient';
     getFifthIngredient.placeholder = 'Ingredient';
     submitButton.textContent = 'Submit Ingredients';
+    submitButton.style.cursor = 'pointer';
 
     somethingToGrab.append(ingredientsForm)
     ingredientsForm.append(getFirstIngredient, getSecondIngredient, getThirdIngredient,
@@ -86,7 +87,7 @@ function getUniqueOneIngredientDrinks(hasOneIngredient) {
     let uniqueOneIngredientDrinks = [...new Set(hasOneIngredient)]
     
     if (hasOneIngredient.length === 0 || uniqueOneIngredientDrinks.length === hasOneIngredient.length) {
-        const notEnoughIngredients = document.createElement('li')
+        const notEnoughIngredients = document.createElement('ul')
         notEnoughIngredients.textContent = `You don't have enough ingredients for any of these drinks. Try Again.`
         listHeader.append(notEnoughIngredients)
     }
@@ -112,7 +113,7 @@ function howManyIngredientsPerDrink(hasOneIngredient, uniqueOneIngredientDrinks)
 
             const drinkToMake = document.createElement('ul')
 
-            drinkToMake.textContent = uniqueOneIngredientDrinks[i] + ' has ' + ingredientCount + ' ingredients'
+            drinkToMake.textContent = 'You have ' + ingredientCount + ' ingredients' + ' for a ' + uniqueOneIngredientDrinks[i]
 
             listHeader.append(drinkToMake)
         }
@@ -161,7 +162,7 @@ const displayDrinks = (drinkData) => {
 
     const dislike = () => {
 
-        disLikeBtn.style.color = "blue";
+        disLikeBtn.style.color = "red";
         likeBtn.style.color = "grey";
 
 
@@ -239,6 +240,9 @@ const displayRDrink = (drink) => {
     likeBtn.id = "like"
     disLikeBtn.className = "fa-solid fa-thumbs-down"
     disLikeBtn.id = "dislike"
+    likeBtn.style.color = "grey";
+    disLikeBtn.style.color = "grey";
+
 
     likeBtn.style.fontSize
 
@@ -251,7 +255,7 @@ const displayRDrink = (drink) => {
 
     const dislike = () => {
 
-        disLikeBtn.style.color = "blue";
+        disLikeBtn.style.color = "red";
         likeBtn.style.color = "grey";
 
 
@@ -304,7 +308,7 @@ const init = (drink) => {
     getRandomDrink()
     getEnteredIngredients();
 
-        setTimeout(() => {alert('Please confirm you are over 21 years of age.')
+        setTimeout(() => {alert('Please confirm you are 21 years of age or over.')
 
     }, 1000);
 
