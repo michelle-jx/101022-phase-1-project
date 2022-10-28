@@ -1,6 +1,5 @@
 //Creating the Form and search.
 
-
 let hasOneIngredient = [];
 let uniqueOneIngredientDrinks = [];
 
@@ -54,12 +53,13 @@ function getEnteredIngredients() {
 
     })
 }
+
 function searchIngredients(ingrSearchArray) {
 
     fetch('https://www.thecocktaildb.com/api/json/v1/1/search.php?f=b')
         .then(res => res.json())
         .then(drinkData => {
-           
+
             drinkData.drinks.forEach((singleDrinkData) => {
 
                 getCocktailIngredients(singleDrinkData, ingrSearchArray)
@@ -69,10 +69,11 @@ function searchIngredients(ingrSearchArray) {
 
         })
 }
+
 function getCocktailIngredients(singleDrinkData, ingrSearchArray) {
- 
+
     for (i = 0; i < 5; i++) {
-       
+
         for (j = 1; j < 6; j++) {
 
             if (ingrSearchArray[i] === singleDrinkData[`strIngredient${j}`]) {
@@ -86,20 +87,20 @@ function getCocktailIngredients(singleDrinkData, ingrSearchArray) {
 function getUniqueOneIngredientDrinks(hasOneIngredient) {
 
     let uniqueOneIngredientDrinks = [...new Set(hasOneIngredient)]
-    
+
     if (hasOneIngredient.length === 0 || uniqueOneIngredientDrinks.length === hasOneIngredient.length) {
         const notEnoughIngredients = document.createElement('ul')
         notEnoughIngredients.textContent = `You don't have enough ingredients for any of these drinks. Try Again.`
         listHeader.append(notEnoughIngredients)
     }
-   
+
     howManyIngredientsPerDrink(hasOneIngredient, uniqueOneIngredientDrinks)
 }
 
 function howManyIngredientsPerDrink(hasOneIngredient, uniqueOneIngredientDrinks) {
 
     for (i = 0; i < uniqueOneIngredientDrinks.length; i++) {
-      
+
         let ingredientCount = 0
 
         hasOneIngredient.forEach(drink => {
@@ -109,7 +110,7 @@ function howManyIngredientsPerDrink(hasOneIngredient, uniqueOneIngredientDrinks)
                 ingredientCount += 1;
             }
         })
-     
+
         if (ingredientCount > 1) {
 
             const drinkToMake = document.createElement('ul')
@@ -118,19 +119,22 @@ function howManyIngredientsPerDrink(hasOneIngredient, uniqueOneIngredientDrinks)
 
             listHeader.append(drinkToMake)
         }
-       
+
     }
 }
 
 //Dislay drink Information
 
-fetch('https://www.thecocktaildb.com/api/json/v1/1/search.php?f=c')
+fetch('https://www.thecocktaildb.com/api/json/v1/1/search.php?f=b')
     .then(res => res.json())
     .then(drinkData => {
+
         renderDrinks(drinkData)
+
     })
 
 const renderDrinks = (drinkData) => {
+
     drinkData.drinks.forEach(displayDrinks)
 
 }
@@ -156,6 +160,7 @@ const displayDrinks = (drinkData) => {
     disLikeBtn.style.color = "grey";
 
     const like = () => {
+
         likeBtn.style.color = "blue";
         disLikeBtn.style.color = "grey"
 
@@ -170,24 +175,23 @@ const displayDrinks = (drinkData) => {
     }
 
     likeBtn.addEventListener("click", like)
-
     disLikeBtn.addEventListener("click", dislike)
 
 
     drinkUl.append(drinkName)
+
     for (let i = 1; i < 16; i++) {
 
-   
-        if (drinkData[`strMeasure${i}`] == null) {
-        break
-        }else if (drinkData[`strIngredient${i}`] == null) {
-        break
-         }
+
+        if (drinkData[`strMeasure${i}`] == null || drinkData[`strIngredient${i}`] == null) {
+            break
+        }
 
         const ingredient = document.createElement('ul')
 
         ingredient.innerHTML = drinkData[`strIngredient${i}`] + drinkData[`strMeasure${i}`]
         drinkUl.appendChild(ingredient)
+
     }
 
 
@@ -210,6 +214,8 @@ const API_URL = "https://www.thecocktaildb.com/api/json/v1/1/random.php";
 const randomizerDiv = document.getElementById('random-drink');
 const rButton = document.getElementById('random-btn');
 
+randomizerDiv.style.display = "none";
+
 const getRandomDrink = () => {
 
     fetch(API_URL)
@@ -221,8 +227,6 @@ const getRandomDrink = () => {
         })
 
 }
-
-randomizerDiv.style.display = "none";
 
 const renderDrink = (drink) => {
 
@@ -271,6 +275,7 @@ const displayRDrink = (drink) => {
     rDrinkInst.textContent = drink.strInstructions
     rDrinkName.textContent = drink.strDrink
     rDrinkName.id = 'drink-name'
+    rDrinkImg.id = 'drink-img'
     rDrinkImg.src = drink.strDrinkThumb
     rDrinkImg.alt = drink.strDrink
 
@@ -278,11 +283,12 @@ const displayRDrink = (drink) => {
 
     for (let i = 1; i < 16; i++) {
 
-        if (drink[`strMeasure${i}`] == null) {
-            break
-        } else if (drink[`strIngredient${i}`] == null) {
+        if (drinkData[`strMeasure${i}`] == null || drinkData[`strIngredient${i}`] == null) {
             break
         }
+        // } else if (drink[`strIngredient${i}`] == null) {
+        //     break
+        // }
 
         const rIngredient = document.createElement('p')
 
@@ -305,14 +311,15 @@ rButton.addEventListener('click', () => {
 })
 
 
-const init = (drink) => {
+const init = () => {
 
     getRandomDrink()
     getEnteredIngredients();
 
-    //     setTimeout(() => {alert('Please confirm you are 21 years of age or over.')
+    setTimeout(() => {
+        alert('Please confirm you are 21 years of age or over.')
 
-    // }, 1000);
+    }, 1000);
 
 }
 

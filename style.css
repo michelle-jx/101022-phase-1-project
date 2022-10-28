@@ -61,9 +61,13 @@ img {
     max-height: 35vh;
 } 
 
-#random-drink-image {
-    /* justify-content: center;
-    margin: auto; */
+#drink-img {
+    
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border: 8px ridge gold;
+    padding: 5px;
     max-width: 35vw;
     max-height: 35vh;
 }
