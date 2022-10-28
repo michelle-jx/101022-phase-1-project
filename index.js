@@ -124,7 +124,7 @@ function howManyIngredientsPerDrink(hasOneIngredient, uniqueOneIngredientDrinks)
 
 //Dislay drink Information
 
-fetch('https://www.thecocktaildb.com/api/json/v1/1/search.php?f=b')
+fetch('https://www.thecocktaildb.com/api/json/v1/1/search.php?f=c')
     .then(res => res.json())
     .then(drinkData => {
         renderDrinks(drinkData)
@@ -177,11 +177,12 @@ const displayDrinks = (drinkData) => {
     drinkUl.append(drinkName)
     for (let i = 1; i < 16; i++) {
 
-
-        if (drinkData[`strIngredient${i}`] == null) {
-            break
-        }
-
+   
+        if (drinkData[`strMeasure${i}`] == null) {
+        break
+        }else if (drinkData[`strIngredient${i}`] == null) {
+        break
+         }
 
         const ingredient = document.createElement('ul')
 
